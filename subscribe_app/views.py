@@ -2,7 +2,7 @@ import re
 from subscribe_app.models import Razorpay_Detail, Subscribe_Plan, User, User_Profile
 from .serializer import  RegisterSerializer,LoginSerializer
 from rest_framework.generics import GenericAPIView
-from rest_framework.decorators import  permission_classes,authentication_classes
+from rest_framework.decorators import  api_view, permission_classes,authentication_classes
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -99,7 +99,14 @@ class CancelSubscription(GenericAPIView):
         user = request.user
         if user.is_manager == True:
             user_obj = User_Profile.objects.get(user=user)
+            if user_obj.expiry_date == datetime.now():
+                user_obj.is_subscribed =  False
+                user_obj.save()
+                return Response({'message':'It will expired Today'})
             if user_obj.is_subscribed == True:
+                avail_days = (datetime.now(timezone.utc) - user_obj.subscribe_date).days
+                if avail_days >= 0:
+                    return Response({'message':"You don't have any left days"})
                 user_obj.is_cancel = True
                 user_obj.cancel_date = datetime.now()
                 print(user_obj.subscribe_date)
@@ -116,6 +123,8 @@ class ResumeSubcription(GenericAPIView):
         user = request.user
         user_obj = User_Profile.objects.get(user=user)
         print(user_obj.left_day)
+        if user.is_cancel == False:
+            return Response({'message':"You didn't cancel the plan or don't have any active plan"})
         if user_obj.left_day == 0:
             return Response({'message':"You don't have any left days"})
         user_obj.expiry_date = datetime.now(timezone.utc)+ timedelta(days=int(user_obj.left_day))
