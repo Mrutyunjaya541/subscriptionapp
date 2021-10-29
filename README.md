@@ -40,3 +40,5 @@ For Signup you need:-
 For login you need :-
   
   Email and password
+  
+For manager access contact to admin:-
