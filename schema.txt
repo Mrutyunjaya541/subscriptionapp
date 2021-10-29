@@ -1,0 +1,47 @@
+There are 4 tables in the project.
+
+User tables:-
+------------
+We are storing user information in the User table:-
+
+Email
+First_name
+Last_name
+Dob
+Address
+Company
+Password(Password will be stored by using Hashing algorithm)
+is_manager(for user is manager or not)
+is_admin(For admin user)
+is_staff(For staff user)
+
+Subscribe_Plan :-
+----------------
+
+Here we are storing subscriber plan in days and amount for this plan
+
+subscribe)plan(in days)
+amoun (for this plan)
+
+User_Profile:-
+--------------
+
+In User_Profile we will get all the information about user like user is subscribe or not , if subscribed then what is the expiry date.
+User_Profile is OneToOne realtionship with User .
+
+    sub_plan is OneToMany with Subscribe_Plan
+    is_subscribed
+    subscribe_date
+    cancel_date
+    expiry_date
+    is_cancel
+    left_day
+    order_id(always unique)
+
+Razorpay_details:-
+-------------------
+
+Here we are storing payment details and payment_status
+
+User table is OneToMany realtionship with Razorpay_details table
+
