@@ -6,18 +6,37 @@ Here I'm using Razorpay for payment accecpting.
 
 projrct_flow :---
 
-create a project by using(django-admin startproject project_name)
-create a virtualenv
-activate virtualenv
-install django by using pip
-install all the modules required for this project by using (pip3 install -r requirements.txt)
+- create a virtual environment 
+- install django
+- django-admin startproject <project name>
+- django admin startapp <app name>
+- 	add the app to settings.py in installed apps
+- 	add views in app from views.py
+- 	map this view to urls.py (using url mapping or include function)
 
-Then create the app by using(python3 manage.py startapp app_name)
+- make all the models 
+- 	python manage.py migrate
+- 	register the changes in model: python manage.py makemigrations <app name>
+- 	python manage.py migrate
+- 	register your models in admin.py file of that application
+- 	create superuser to get access to admin interface
+  
+ - Start django-server
+  -- python manage.py runserver
+  
+ Here I'm integrating Razorpay for accepting payment from the user.
+  Here you found 2 urls for payment profile
+  one for starting payment.
+  and another one for handling the payment.
+  
+If you are a manager the you will able to cancel or resume your subscription.
+  For manager access you need to request the admin to give manager access.
+  Admin will give you the manager access.
+  
+For Signup you need:-
+  
+  Email,first_name,last_name,dob,address,comapny and password
 
-add the app_name in settings.py 
-after that run
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py runserver
-
+For login you need :-
+  
+  Email and password
