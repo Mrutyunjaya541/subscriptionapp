@@ -8,6 +8,7 @@ projrct_flow :---
 
 - create a virtual environment 
 - install django
+- install django rest framework
 - django-admin startproject <project name>
 - django admin startapp <app name>
 - 	add the app to settings.py in installed apps
