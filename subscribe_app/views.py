@@ -99,7 +99,7 @@ class CancelSubscription(GenericAPIView):
         user = request.user
         if user.is_manager == True:
             user_obj = User_Profile.objects.get(user=user)
-            if user_obj.expiry_date == datetime.now():
+            if user_obj.expiry_date >= datetime.now():
                 user_obj.is_subscribed =  False
                 user_obj.save()
                 return Response({'message':'It will expired Today'})
