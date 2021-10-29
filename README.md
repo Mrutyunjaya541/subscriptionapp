@@ -25,7 +25,7 @@ projrct_flow :---
   -- python manage.py runserver
   
  Here I'm integrating Razorpay for accepting payment from the user.
-  Here you found 2 urls for payment profile
+  Here you find 2 urls for payment profile
   one for starting payment.
   and another one for handling the payment.
   
